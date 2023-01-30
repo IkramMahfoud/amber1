@@ -2,7 +2,7 @@
 
 class itemController extends Controller
 {
-    public $itemModel;
+    private $itemModel;
     public function __construct()
     {
         $this->itemModel = $this->model('item');
@@ -81,5 +81,42 @@ public function orderProduct($by,$order) // /amber/itemController/orderProduct/i
         ];
         $this->view('dashboard',$data);
 }
+
+
+
+//////////////////////////////////////////////////////////////
+    public function showStatistic()
+    {
+        $maxPrice= $this->itemModel->maxPrice();
+        $sumPrice= $this->itemModel->sumPrice();
+        $totalItems= $this->itemModel->totalItems();
+        
+        $data=[
+                'max' => $maxPrice,
+                'sum' => $sumPrice,
+                'total' => $totalItems
+        ];
+        $this->view('statistics',$data);
+    }
+///////////////////////////////////////////////////////////
+
+
+    public function search()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $libelle = $_POST['libelle'];
+            
+            $galleryarray = $this->itemModel->search($libelle);
+
+            // creation array's items data:
+            $data=
+            [
+                'galleryrow'    => $galleryarray
+            ];
+            $this->view('dashboard',$data);
+        }else{
+            header('location:' . URLROOT . 'home/dashboard');
+        }
+    }
     
 }

@@ -11,6 +11,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= URLROOT ?>GalleryController/showgallery">Gallery</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= URLROOT ?>itemController/showStatistic">Statistic</a>
+                    </li>
 
             </ul>
 
@@ -19,7 +22,7 @@
                     <li><a class="nav-link me-md-4 mb-md-0 mb-2" href="<?= URLROOT . 'home/dashboard' ?>">Dashboard</a></li>
                     <li><a class="nav-link" href="<?= URLROOT ?>userController/Logout">Log out</a></li>
                 <?php else : ?>
-                    <li><a class="nav-link me-md-4 mb-md-0 mb-2" href="<?= URLROOT ?>usercontroller/login">Login</a></li>
+                    <li><a class="nav-link" style="margin-left: 88rem;" href="<?= URLROOT ?>usercontroller/login">Login</a></li>
                 <?php endif; ?>
                 </ul>
             </form>

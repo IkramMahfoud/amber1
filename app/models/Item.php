@@ -62,5 +62,39 @@ class Item
         $this->db->execute();
         return $this->db->fetchAll();
     }
-}
 
+
+    // fetch all columns in fetchColumn()
+    public function maxPrice()
+    {
+        $this->db->query('SELECT MAX(item_price) FROM item');
+        $this->db->execute();
+        return $this->db->fetchColumn();
+    }
+
+    public function sumPrice()
+    {
+        $this->db->query('SELECT SUM(item_price) FROM item');
+        $this->db->execute();
+        return $this->db->fetchColumn();
+    }
+
+    public function totalItems(){
+        $this->db->query('SELECT COUNT(item_price) FROM item');
+        $this->db->execute();
+        return $this->db->fetchColumn();
+    }
+
+    function search($libelle){
+        $this->db->query(" SELECT 
+                                * 
+                            FROM 
+                                item i
+                            WHERE 
+                                i.item_name LIKE '%$libelle%'
+                        ");
+        $this->db->execute();
+        $data = $this->db->fetchAll();
+        return $data;
+    }
+}
